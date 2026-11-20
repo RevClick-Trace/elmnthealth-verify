@@ -1,0 +1,17 @@
+name: Check public verification URLs
+on: workflow_dispatch
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check HTTPS responses and incognito Chrome
+        run: |
+          python3 -m venv "$RUNNER_TEMP/verification"
+          "$RUNNER_TEMP/verification/bin/pip" install --quiet selenium==4.29.0
+          "$RUNNER_TEMP/verification/bin/python" .github/scripts/check_live_site.py
