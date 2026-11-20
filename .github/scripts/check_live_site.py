@@ -42,6 +42,13 @@ def check_browser():
             assert browser.current_url == url
             if path == "/":
                 assert browser.title == "ELMNT Health"
+                logo = browser.find_element(By.CSS_SELECTOR, "main img")
+                assert logo.get_property("naturalWidth") > 0, "The brand logo did not load"
+                links = browser.find_elements(By.CSS_SELECTOR, "main a")
+                assert {link.get_attribute("href") for link in links} == {
+                    "https://terraelmnt.com/",
+                    "https://terraelmnt.com/pages/help",
+                }
                 assert not browser.find_elements(By.CSS_SELECTOR, 'script, meta[http-equiv="refresh" i]')
             else:
                 rendered = browser.find_element(By.TAG_NAME, "body").text
