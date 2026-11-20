@@ -2,7 +2,8 @@
 
 Serves `https://elmnthealth.com/merchantcenter.txt` for Google Merchant Center
 account recovery (case 5-7807000042170, accounts 705765203 / 5470648282).
-Every other path forwards to terraelmnt.com.
+The homepage stays on elmnthealth.com and offers a link to the store.
+Unknown paths forward visitors to terraelmnt.com through the custom 404 page.
 
 While this is live, elmnthealth.com's root A records point at GitHub Pages
 instead of Shopify. Once Google confirms, restore Shopify's records
